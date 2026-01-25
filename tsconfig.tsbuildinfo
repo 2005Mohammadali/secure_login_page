@@ -1,0 +1,1 @@
+{"root":["./config/custom-env.ts","./config/default.ts","./src/App.ts","./src/models/user.model.ts","./src/services/auth.services.ts","./src/utils/dbConnect.ts"],"errors":true,"version":"5.9.3"}
