@@ -1,7 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 module.exports = {
     jwtSecret: "JWT_SECRET",
-    dbUri: "DB_CONNECTION_STRING"
+    dbUri: "DB_CONNECTION_STRING",
+    port: "PORT"
 };
-//# sourceMappingURL=custom-env.js.map

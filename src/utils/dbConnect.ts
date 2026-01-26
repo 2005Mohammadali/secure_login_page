@@ -1,15 +1,14 @@
-const mongoose = require('mongoose');
-const config = require('./config/custom-env');
+import mongoose from "mongoose";
+import * as config from "config";
 
-const dbUri = config.dbUri;
+const dbUri = config.get<string>("dbUri");
 
-const connectDB = async () => {
+export default async function dbConnect(){
     try {
         await mongoose.connect(dbUri);
-        console.log("Database connected successfully");
-    } catch (error) {
+        console.log("Database connected successfully ");
+    } catch (error) {   
         console.error("Database connection error:", error);
     }
 }
 
-module.exports = connectDB;

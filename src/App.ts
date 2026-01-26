@@ -1,11 +1,4 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const app = express();
-const jwt = require('jsonwebtoken');
-const { UserModel } = require('./database');
-const config = require('/config/default.ts')
-const dbConnect = require('./utils/dbConnect');
-
+/*
 app.use(express.json());
 
 app.get('/', (req: any, res: any) => {
@@ -15,7 +8,7 @@ app.get('/', (req: any, res: any) => {
 app.post('/v1/account/register', async (req: any, res: any) => {
     const { firstName, lastName, username, password, email, mobileNo } = req.body;
 
-    const user = new UserModel({
+    const user = new UserModel.create({
         firstName,
         lastName,
         username,
@@ -56,9 +49,21 @@ app.get('/v1/profile', async (req: any, res: any) => {
         res.status(401).send('Invalid token');
     }
 })
+*/
 
-const port = config.port;
-app.listen(port, async () => {
-    console.log(`Server is running at http://localhost:${port}`);
+
+import * as express from "express";
+import routes from "./routes/routes";
+import * as config from "config";
+import dbConnect from "./utils/dbConnect";
+
+const app = express();
+const PORT = config.get<number>("port");
+
+app.use(express.json());
+
+app.listen(PORT, async () => {
+    console.log(`Server running on Port: ${PORT}`);
     await dbConnect();
-});
+    routes(app);
+})

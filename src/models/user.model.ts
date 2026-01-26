@@ -1,6 +1,6 @@
-import mongoose = require("mongoose");
+import mongoose from 'mongoose';
 
-interface UserDocument extends mongoose.Document {
+export interface UserDocument extends mongoose.Document {
     firstName: string;
     lastName: string;
     username: string;
@@ -27,7 +27,4 @@ const userSchema = new mongoose.Schema({
 //hashing function can be added here for password before saving
 
 const UserModel = mongoose.model<UserDocument>('User', userSchema);
-
-module.exports = {
-    UserModel
-}
+export default UserModel;
