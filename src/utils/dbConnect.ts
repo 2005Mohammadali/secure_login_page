@@ -1,14 +1,23 @@
-import mongoose from "mongoose";
-import * as config from "config";
+import mongoose from 'mongoose';
+import * as config from 'config';
 
-const dbUri = config.get<string>("dbUri");
 
-export default async function dbConnect(){
-    try {
-        await mongoose.connect(dbUri);
-        console.log("Database connected successfully ");
-    } catch (error) {   
-        console.error("Database connection error:", error);
-    }
+async function connect() {
+  const dbUri = process.env.DB_CONNECTION_STRING;
+
+  if (!dbUri) {
+    console.error("❌ FATAL: DB_CONNECTION_STRING is missing in .env file");
+    process.exit(1);
+  }
+
+  try {
+    await mongoose.connect(dbUri);
+    console.info("🚀 Database connected successfully to Cloud");
+  } catch (error) {
+    console.error("Could not connect to db");
+    process.exit(1);
+  }
 }
+
+export default connect;
 

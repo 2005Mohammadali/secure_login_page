@@ -1,1 +1,1 @@
-{"root":["./src/App.ts","./src/controllers/auth.controller.ts","./src/models/user.model.ts","./src/routes/routes.ts","./src/schemas/auth.schema.ts","./src/schemas/user.schema.ts","./src/services/auth.services.ts","./src/utils/dbConnect.ts"],"version":"5.9.3"}
+{"root":["./src/App.ts","./src/controllers/user.controller.ts","./src/models/user.model.ts","./src/routes/routes.ts","./src/schemas/auth.schema.ts","./src/schemas/user.schema.ts","./src/services/auth.services.ts","./src/utils/dbConnect.ts"],"version":"5.9.3"}

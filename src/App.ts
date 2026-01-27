@@ -52,18 +52,27 @@ app.get('/v1/profile', async (req: any, res: any) => {
 */
 
 
+import 'dotenv/config';
+
 import * as express from "express";
 import routes from "./routes/routes";
 import * as config from "config";
-import dbConnect from "./utils/dbConnect";
+import connect from "./utils/dbConnect";
 
 const app = express();
-const PORT = config.get<number>("port");
+
+app.use((req, res, next) => {
+    console.log(`🔔 INCOMING REQUEST: ${req.method} ${req.url}`);
+    next();
+});
+
+const PORT = process.env.PORT;
 
 app.use(express.json());
 
+routes(app);
+
 app.listen(PORT, async () => {
     console.log(`Server running on Port: ${PORT}`);
-    await dbConnect();
-    routes(app);
+    await connect();
 })

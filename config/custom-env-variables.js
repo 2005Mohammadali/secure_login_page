@@ -1,5 +1,5 @@
 module.exports = {
-    jwtSecret: "JWT_SECRET",
+    port: "PORT",
     dbUri: "DB_CONNECTION_STRING",
-    port: "PORT"
+    jwtSecret: "JWT_SECRET",
 };
