@@ -5,13 +5,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node dist/App.js",
-    "dev": "npx ts-node src/app.ts"
+    "dev": "npx ts-node src/App.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
     "@types/config": "^3.3.5",
     "@types/express": "^5.0.6",
     "@types/node": "^25.0.9",
@@ -19,7 +20,6 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "@types/bcrypt": "^6.0.0",
     "bcrypt": "^6.0.0",
     "config": "^4.2.0",
     "dotenv": "^17.2.3",
