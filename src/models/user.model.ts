@@ -5,8 +5,8 @@ export interface UserDocument extends mongoose.Document {
     firstName: string;
     lastName: string;
     username: string;
-    password: string;
     email: string;
+    password: string;
     mobileNo: number;
     createdAt: Date;
     updatedAt: Date;

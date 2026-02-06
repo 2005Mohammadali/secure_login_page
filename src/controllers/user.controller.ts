@@ -1,5 +1,5 @@
 import {Request, Response} from 'express';
-import { createUser } from '../services/auth.services';
+import { createUser } from '../services/user.services';
 import { CreateUserInput } from '../schemas/auth.schema';
 
 export async function registerUser(req: Request, res: Response) {
