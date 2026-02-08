@@ -30,6 +30,7 @@ import * as express from "express";
 import routes from "./routes/routes";
 import * as config from "config";
 import connect from "./utils/dbConnect";
+import { deserializeUser } from './middlewares/deserializeUser';
 
 const app = express();
 
@@ -41,6 +42,7 @@ app.use((req, res, next) => {
 const PORT = process.env.PORT;
 
 app.use(express.json());
+app.use(deserializeUser);
 
 routes(app);
 
