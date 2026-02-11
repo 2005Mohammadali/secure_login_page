@@ -1,4 +1,3 @@
-// import React from "react";
 import { Link } from "react-router-dom";
 
 const LoginPage = () => {
@@ -54,7 +53,7 @@ const LoginPage = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-green-600 dark:bg-green-600 hover:bg-green-700 dark:hover:bg-green-700 cursor-pointer text-white font-semibold py-2.5 rounded-lg transition-colors duration-200"
+            className="w-full bg-green-600 hover:bg-green-700 cursor-pointer text-white font-semibold py-2.5 rounded-lg transition-colors duration-200"
           >
             Sign In
           </button>
@@ -63,7 +62,7 @@ const LoginPage = () => {
         {/* FOOTER */}
         <div className="mt-6 text-center text-sm text-slate-600 dark:text-slate-400 transition-colors duration-200">
           Don't have an account?{" "}
-          <Link to="/register" className="text-blue-600 dark:text-blue-400 font-semibold hover:underline transition-colors duration-200">
+          <Link to="/register" className="text-blue-600 dark:text-blue-400 font-medium hover:underline transition-colors duration-200">
             Sign up
           </Link>
         </div>
