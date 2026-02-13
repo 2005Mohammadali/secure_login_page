@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import React, { useState, type ChangeEvent} from "react";
+import React, { useState, type ChangeEvent } from "react";
+import Input from "../components/Input";
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
@@ -13,7 +14,7 @@ const RegisterPage = () => {
   });
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setFormData({...formData, [e.target.name]: e.target.value});
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
@@ -32,10 +33,10 @@ const RegisterPage = () => {
   return (
     // MAIN CONTAINER
     <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-green-100 to-blue-100 dark:from-green-800 dark:to-slate-900 transition-colors duration-200">
-      
+
       {/* REGISTER CARD */}
       <div className="bg-white shadow-2xl shadow-green-700/80 dark:bg-slate-800/80 backdrop-blur-sm p-8 rounded-xl dark:shadow-2xl dark:shadow-green-700/40  w-full max-w-lg transition-colors duration-200 border border-transparent dark:border-slate-700/50">
-        
+
         {/* HEADER */}
         <div className="text-center mb-6">
           <h2 className="text-3xl font-bold text-green-800 dark:text-green-600 transition-colors duration-200">
@@ -48,103 +49,77 @@ const RegisterPage = () => {
 
         {/* FORM */}
         <form className="space-y-4" onSubmit={submitHandler}>
-          
+
           {/* Firstname and Lastname */}
           <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
-                First Name <span className="text-red-500">*</span>
-              </label>
-              <input
-                name="firstName" value={formData.firstName} onChange={handleChange}
-                type="text"
-                required
-                className="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-sm bg-slate-50 dark:bg-slate-700/50 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-green-500/50 focus:border-green-500 transition-all"
-                placeholder="Neo"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
-                Last Name <span className="text-red-500">*</span>
-              </label>
-              <input
-                name="lastName" value={formData.lastName} onChange={handleChange}
-                type="text"
-                required
-                className="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-sm bg-slate-50 dark:bg-slate-700/50 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-green-500/50 focus:border-green-500 transition-all"
-                placeholder="Anderson"
-              />
-            </div>
+            <Input
+              label="Firstname"
+              name="firstName"
+              value={formData.firstName}
+              onChange={handleChange}
+              placeholder="Neo"
+            />
+
+            <Input
+              label="Lastname"
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleChange}
+              placeholder="Anderson"
+            />
           </div>
+
 
           {/* Username & Mobile */}
           <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
-                Username <span className="text-red-500">*</span>
-              </label>
-              <input
-                name="username" value={formData.username} onChange={handleChange}
-                type="text"
-                required
-                className="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-sm bg-slate-50 dark:bg-slate-700/50 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-green-500/50 focus:border-green-500 transition-all"
-                placeholder="the_one"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
-                Mobile No <span className="text-red-500">*</span>
-              </label>
-              <input
-                name="mobileNo" value={formData.mobileNo} onChange={handleChange}
-                type="number"
-                required
-                className="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-sm bg-slate-50 dark:bg-slate-700/50 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-green-500/50 focus:border-green-500 transition-all"
-                placeholder="9876543210"
-              />
-            </div>
+            <Input
+              label="Username"
+              type="text"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              placeholder="the_one"
+            />
+
+            <Input
+              label="Mobile No"
+              type="number"
+              name="mobileNo"
+              value={formData.mobileNo}
+              onChange={handleChange}
+              placeholder="9876543210"
+            />
           </div>
 
           {/* Email */}
           <div>
-            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
-              Email Address <span className="text-red-500">*</span>
-            </label>
-            <input
-              name="email" value={formData.email} onChange={handleChange}
+            <Input
+              label="Email Address"
               type="email"
-              required
-              className="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-sm bg-slate-50 dark:bg-slate-700/50 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-green-500/50 focus:border-green-500 transition-all"
-              placeholder="neo@matrix.com"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="john@example.com"
             />
           </div>
 
           {/* Password & Confirm */}
           <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
-                Password <span className="text-red-500">*</span>
-              </label>
-              <input
-                name="password" value={formData.password} onChange={handleChange}
-                type="password"
-                required
-                className="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-sm bg-slate-50 dark:bg-slate-700/50 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-green-500/50 focus:border-green-500 transition-all"
-                placeholder="••••••••"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
-                Confirm <span className="text-red-500">*</span>
-              </label>
-              <input
-                name="confirmPassword" value={formData.confirmPassword} onChange={handleChange}
-                type="password"
-                required
-                className="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-sm bg-slate-50 dark:bg-slate-700/50 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-green-500/50 focus:border-green-500 transition-all"
-                placeholder="••••••••"
-              />
-            </div>
+            <Input
+              label="Password"
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+            />
+
+            <Input
+              label="Confirm Password"
+              type="password"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+            />
           </div>
 
           {/* SUBMIT BUTTON */}
