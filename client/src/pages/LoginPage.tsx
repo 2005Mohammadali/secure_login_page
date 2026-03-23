@@ -1,6 +1,30 @@
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+
+  const submitHandler = async ( e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
+    const user = {
+      email: "",
+      password: "",
+    }
+    console.log("User", user);
+    
+    try {
+      await axios.post("http://localhost:1337/api/v1/auth/sessions", user);
+      alert("Login Successful");
+      navigate("/me");
+    } catch (error) {
+      console.log("Login Error:", error);
+      alert("Incorrect Login Credentials!!");
+      navigate("/login");
+    }
+    
+
+  }
   return (
     // MAIN CONTAINER
     <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-green-100 to-blue-100 dark:from-green-800 dark:to-slate-900 transition-colors duration-200">
@@ -19,7 +43,7 @@ const LoginPage = () => {
         </div>
 
         {/* THE FORM */}
-        <form className="space-y-6">
+        <form className="space-y-6" onSubmit={submitHandler}>
           
           {/* Email Input */}
           <div>

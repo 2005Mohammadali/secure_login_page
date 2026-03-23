@@ -1,8 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useState, type ChangeEvent } from "react";
 import Input from "../components/Input";
+import axios from "axios";
 
 const RegisterPage = () => {
+  const navigate = useNavigate();
+  
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -12,21 +15,37 @@ const RegisterPage = () => {
     confirmPassword: "",
     mobileNo: "",
   });
-
+  
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    
     if (formData.password !== formData.confirmPassword) {
       alert("Passwords do not match!!");
+      navigate("/register");
       return;
     }
 
     //logic to send data to backend api
-    console.log(formData);
+    try {
+      const payload = {
+        ...formData,
+        mobileNo: Number(formData.mobileNo),
+      };
+
+      await axios.post("http://localhost:1337/api/v1/auth/register", payload);
+      alert("Registration Successful");
+      // console.log("Response:", request.data);
+
+      navigate("/login");
+
+    } catch (error: any) {
+      console.log("Registration Error:", error);
+      alert(error.response?.data || "Registration failed. Please try again.");
+    }
 
   };
 
