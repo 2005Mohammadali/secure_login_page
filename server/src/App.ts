@@ -31,8 +31,14 @@ import routes from "./routes/routes";
 import * as config from "config";
 import connect from "./utils/dbConnect";
 import { deserializeUser } from './middlewares/deserializeUser';
+import cors = require("cors");
 
 const app = express();
+
+app.use(cors({
+    origin: "http://localhost:5173",
+    credentials: true
+}));
 
 app.use((req, res, next) => {
     console.log(`🔔 INCOMING REQUEST: ${req.method} ${req.url}`);
