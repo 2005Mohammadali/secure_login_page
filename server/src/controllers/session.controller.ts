@@ -6,14 +6,28 @@ export async function createSessionHandler(req: Request, res: Response) {
     const user = await validatePassword(req.body);
 
     if(!user){
-        res.status(401).json({
+        return res.status(401).json({
             msg: "Invalid email or password"
         })
-    }else{
+    }
+    
+    try{
         const token = signJwt(user, {expiresIn: "3d"});
-        return res.send({
-            accessToken: token
+        res.cookie("accessToken", token, {
+           httpOnly: true,
+           maxAge: 3 * 24 * 60 * 60 * 1000,
+           path: "/",
+           sameSite: "lax",
+           secure: false, // Set to true in production when using HTTPS
         });
+
+        return res.send({
+            msg: "Login successful",
+        });
+        
+    }catch(e: any){
+        console.error(e);
+        return res.status(500).send("Internal Server Error");
     }
 
 

@@ -9,6 +9,7 @@ function routes(app: Express){
     app.get('/api/v1/me', requireUser, (req: Request, res: Response) => {
         return res.send(res.locals.user);
     });
+    app.post('/api/v1/auth/logout', requireUser, )
 }
 
 export default routes;

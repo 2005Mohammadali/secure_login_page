@@ -32,6 +32,7 @@ import * as config from "config";
 import connect from "./utils/dbConnect";
 import { deserializeUser } from './middlewares/deserializeUser';
 import cors = require("cors");
+import cookieParser = require("cookie-parser");
 
 const app = express();
 
@@ -48,6 +49,7 @@ app.use((req, res, next) => {
 const PORT = process.env.PORT;
 
 app.use(express.json());
+app.use(cookieParser());
 app.use(deserializeUser);
 
 routes(app);
