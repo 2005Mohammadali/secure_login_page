@@ -9,13 +9,15 @@ export const loginAction = async ({request}: {request: Request}) => {
   const user = Object.fromEntries(formData);
 
   try {
-    await axios.post(`${import.meta.env.VITE_API_URL}/api/v1/auth/sessions`, user);
+    await axios.post(`${import.meta.env.VITE_API_URL}/api/v1/auth/sessions`, user,{
+      withCredentials: true, // CRITICAL: This tells Axios to send your secure HTTP-only cookies (the session token)
+    });
     return redirect('/me');
   } catch (error: any) {
     return {
       error: "Invalid Login Credentials !!"
     };
-  }
+  } 
 }
 
 const LoginPage = () => {

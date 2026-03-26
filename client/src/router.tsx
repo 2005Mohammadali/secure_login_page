@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import LoginPage, { loginAction } from "./pages/LoginPage";
 import RegisterPage, { registerAction } from "./pages/RegisterPage";
+import ProfilePage, { profileLoader } from "./pages/ProfilePage";
 
 const router = createBrowserRouter([
     {
@@ -17,6 +18,11 @@ const router = createBrowserRouter([
         element: <LoginPage />,
         action: loginAction
     },
+    {
+        path: '/me',
+        element: <ProfilePage />,
+        loader: profileLoader
+    }
 ]);
 
 export default router;
