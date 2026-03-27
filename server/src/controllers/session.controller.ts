@@ -32,3 +32,17 @@ export async function createSessionHandler(req: Request, res: Response) {
 
 
 }
+
+export async function deleteSessionHandler(req: Request, res: Response){
+    res.cookie("accessToken", "", {
+        httpOnly: true,
+        maxAge: 0,
+        path: "/",
+        sameSite: "lax",
+        secure: false, // Set to true in production when using HTTPS
+    });
+
+    return res.status(200).send({
+        msg: "Succesfully Logged Out"
+    })
+}
