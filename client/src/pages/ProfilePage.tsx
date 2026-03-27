@@ -20,8 +20,9 @@ const ProfilePage = () => {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    // Optional: Add logic to hit a backend /logout endpoint if you have one
-    // For now, we will just redirect to login
+    axios.delete(`${import.meta.env.VITE_API_URL}/api/v1/auth/logout`, {
+      withCredentials: true
+    });
     navigate("/login");
   };
 
